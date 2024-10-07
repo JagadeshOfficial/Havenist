@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Havenist</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background-image: url('Images/Body_background.jpeg'); /* Update the path */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-y: auto; /* Ensure vertical scrolling is allowed if needed */
+            line-height: 1.5;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #f8f9fa;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .bold-link {
+            color: black;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            color: #000 !important;
+        }
+
+        /* Logo Styles */
+        .Logo {
+            display: flex;
+            align-items: center;
+            text-align: center; /* Center align the content */
+        }
+
+        .Logo img {
+            max-width: 200%; /* Make sure the image does not exceed its container's width */
+            height: max-content; /* Maintain the image's aspect ratio */
+            border: 0; /* Remove any default border */
+            display: block; /* Remove any inline spacing issues */
+            margin: 0px; /* Center align the image horizontally */
+            margin-left: 2px;
+            max-height: 55px;
+            margin-right: 15px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            margin: 0;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        /* Property Owner Styles */
+        .property-owner {
+            margin-top: 20px;
+        }
+
+        .property-owner button, .property-owner-btn {
+            padding: 10px 20px;
+            background-color: #5f99e6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        /* Pay Rent Box Styles */
+        .pay-rent-box {
+            display: flex;
+            align-items: center;
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .pay-rent-box i {
+            margin-right: 8px;
+        }
+
+        /* Dropdown Menu Styles */
+        .dropdown {
+            position: page; /* Position relative to contain the absolutely positioned dropdown menu */
+        }
+
+        .dropdown-menu {
+            position: absolute; /* Ensure the dropdown is positioned absolutely relative to its container */
+            top: 100%; /* Position the dropdown directly below the dropdown toggle */
+            left: 0; /* Align the dropdown menu to the left of its container */
+            right: auto; /* Remove right positioning to avoid shifting */
+            width: 200px; /* Set a specific width for the dropdown menu */
+            max-height: 300px; /* Add a max-height to prevent it from growing too large */
+            overflow-y: visible; /* Add scrolling if the content exceeds the max-height */
+            background-color: white; /* Ensure the dropdown has a proper background */
+            border: 1px solid #ddd; /* Add border to match the design */
+            border-radius: 2px; /* Round the corners */
+            padding: 0; /* Remove default padding if necessary */
+            margin: 0; /* Remove default margin if necessary */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+            z-index: 100; /* Ensure the dropdown appears above other elements */
+        }
+
+        .dropdown-menu a {
+            background-color: #ff5a60;
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1; /* Highlight the item on hover */
+        }
+
+        .custom-dropdown-btn {
+            width: 150px; /* Adjust the width as needed */
+            padding: 9px 5px; /* Adjust padding as needed */
+            font-size: 16px; /* Adjust font-size as needed */
+        }
+        .dropdown-item:hover {
+            background-color: #e04a50;
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Content Styles */
+        .content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .left-panel {
+            width: 30%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Optional background color for better readability */
+            border-radius: 10px;
+        }
+
+        .right-panel {
+            width: 65%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Optional background color for better readability */
+            border-radius: 10px;
+        }
+
+        .left-panel h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .left-panel ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .left-panel ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .left-panel ul li i {
+            margin-right: 10px;
+        }
+
+        .testimonial {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .testimonial p {
+            margin-bottom: 5px;
+        }
+
+        .testimonial strong {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group input[type="checkbox"] {
+            width: auto;
+        }
+
+        /* Property Type Buttons Styles */
+        .property-type {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .property-type button {
+            width: 32%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .property-type button:hover, .property-type button.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        /* Submit Button Styles */
+        .submit-btn {
+            background-color: #ff5a60;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #e04a50;
+        }
+
+        /* WhatsApp Updates Styles */
+        .whatsapp-updates {
+            display: flex;
+            align-items: center;
+        }
+
+        .whatsapp-updates input {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        /* Privacy Policy Styles */
+        .privacy-policy {
+            font-size: 14px;
+        }
+
+        .privacy-policy a {
+            color: #007bff;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+
+            .left-panel, .right-panel {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="Logo">
+            <a href="index.html"><img src="Images/Havenist_transparent.png" alt="Company Logo"></a>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link pay-rent-box bold-link" href="pay_rent.html">
+                            <i class="fas fa-credit-card"></i> Pay Rent
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link property-owner-btn" href="Property_Owners.html">For Property Owners</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="signupDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sign up
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="signupDropdown">
+                            <a class="dropdown-item" href="User_Signup.html">User Signup</a>
+                            <a class="dropdown-item" href="Customer_signup.html">Customer Signup</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Log in
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="loginDropdown">
+                            <a class="dropdown-item" href="User_Login.html">User Login</a>
+                            <a class="dropdown-item" href="Customer_Login.html">Customer Login</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle custom-dropdown-btn" href="#" id="menuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="bi bi-menu-button-wide-fill"></i> Menu
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="menuDropdown">
+                            <a class="dropdown-item" href="About.html">About Us</a>
+                            <a class="dropdown-item" href="Property_Owners.html">For Property Owners</a>
+                            <a class="dropdown-item" href="Services.html">Services</a>
+                            <a class="dropdown-item" href="contact.html">Contact</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+         </nav>
+    </header>
+
+
+
+
+
+
+
+
+
+
+    <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+// Include PHPMailer classes
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+$mail = new PHPMailer(true);
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['action']) && $_POST['action'] == 'send_otp') {
+        $first_name = $_POST['first-name'];
+        $email = $_POST['email'];
+        $otp = rand(100000, 999999); // Generate OTP
+
+        // Add your email sending logic here
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com'; 
+            $mail->SMTPAuth = true;
+            $mail->Username = 'jagadeswararaovana@gmail.com'; // Your Gmail address
+            $mail->Password = 'vienyxievujtsiit'; // Your Gmail password or app password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            $mail->setFrom('noreply@yourdomain.com', 'Your Company');
+            $mail->addAddress($email, $first_name);
+
+            $mail->Subject = 'Your OTP for Signup';
+            $mail->Body = "Hello $first_name,\n\nYour OTP for signup is: $otp\n\nPlease verify your account.";
+
+            $mail->send();
+            echo json_encode(['status' => 'success', 'message' => 'OTP sent successfully.']);
+        } catch (Exception $e) {
+            echo json_encode(['status' => 'error', 'message' => 'Mailer Error: ' . $mail->ErrorInfo]);
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['action']) && $_POST['action'] == 'verify_otp') {
+        $email = $_POST['email'];
+        $otp = $_POST['otp'];
+
+        // Check the OTP in the database
+        $check_otp = "SELECT * FROM users WHERE email = ? AND otp_code = ?";
+        $stmt = $conn->prepare($check_otp);
+        $stmt->bind_param("ss", $email, $otp);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result && $result->num_rows > 0) {
+            // OTP is correct, proceed to the next step (e.g., registration complete)
+            echo json_encode(['status' => 'success', 'message' => 'OTP verified successfully.']);
+        } else {
+            // OTP is incorrect
+            echo json_encode(['status' => 'error', 'message' => 'Invalid OTP. Please try again.']);
+        }
+        $stmt->close();
+    }
+}
+
+    }
+}

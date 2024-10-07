@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGO</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        .hidden {
+            display: none;
+        }
+        .profile-photo {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 0px;
+        }
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+        }
+        .property-owner-btn {
+            margin-left: 60px;
+        }
+        .dashboard-menu.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="Logo">
+            <a href="user_index.html"><img src="Images/Havenist_transparent.png" alt="Havenist"></a>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link pay-rent-box bold-link" href="pay_rent.html">
+                            <i class="fas fa-credit-card"></i> Pay Rent
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link property-owner-btn" href="Property_Owners.html">For Property Owners</a>
+                    </li>
+                    <!-- Sign up Dropdown -->
+                    <li class="nav-item dropdown" id="signupDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="signupDropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sign up
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="signupDropdownMenu">
+                            <a class="dropdown-item" href="User_Signup.html">User Signup</a>
+                            <a class="dropdown-item" href="Owner_signup.html">Owner Signup</a>
+                        </div>
+                    </li>
+                    <!-- Login Dropdown -->
+                    <li class="nav-item dropdown" id="loginDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="loginDropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Log in
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="loginDropdownMenu">
+                            <a class="dropdown-item" href="User_Login.html">User Login</a>
+                            <a class="dropdown-item" href="Owner_login.html">Owner Login</a>
+                        </div>
+                    </li>
+
+                    <!-- user Dashboard Dropdown -->
+                    <li class="nav-item dropdown dashboard-menu" id="userDashboardDropdown" style="display: none;">
+                        <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="Images/img4.jpg" alt="User Profile" class="profile-photo">
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="user_profile.php">User Profile</a>
+                            <a class="dropdown-item" href="settings.html">Settings</a>
+                            <a class="dropdown-item" href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="main-content-inner">
+            <h1>World's Largest PG Guest Property Site</h1>
+            <div class="search-box">
+                <form id="searchForm" method="GET" action="display_properties.php">
+                    <select id="city" name="city" onchange="loadLocalities()">
+                        <option value="">Select City</option>
+                        <option value="Ahmedabad">Ahmedabad</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Gurgaon">Gurgaon</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Pune">Pune</option>
+                    </select>
+                    <input type="text" id="localities" name="localities" placeholder="Search up to 3 localities or landmarks">
+                    <select id="propertyType" name="propertyType">
+                        <option value="">Select Property Type</option>
+                        <option value="PG/Hostel">PG/Hostel</option>
+                        <option value="Flatmates">Flatmates</option>
+                        <option value="hotelbooking">Hotel Booking</option>
+                    </select>
+                    <select id="availability" name="availability" class="hidden">
+                        <option value="">Availability</option>
+                        <option value="Immediate">Immediate</option>
+                        <option value="Within a week">Within a week</option>
+                        <option value="Within a month">Within a month</option>
+                        <option value="After a month">After a month</option>
+                    </select>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to check login status -->
+    <script>
+        // Check if user is logged in
+function checkUserLoginStatus() {
+    const userLoggedIn = sessionStorage.getItem('userLoggedIn') === 'true';  // Corrected to 'userLoggedIn'
+    
+    if (userLoggedIn) {
+        // Hide the sign-up and login options
+        document.getElementById('signupDropdown').style.display = 'none';
+        document.getElementById('loginDropdown').style.display = 'none';
+
+        // Show the user profile dropdown
+        document.getElementById('userDashboardDropdown').style.display = 'block';
+    }
+}
+
+// Call this function on page load
+document.addEventListener('DOMContentLoaded', checkUserLoginStatus);
+
+// Logout function
+function logout() {
+    sessionStorage.removeItem('userLoggedIn'); // Correct to remove 'userLoggedIn'
+    window.location.href = 'index.html'; // Redirect to homepage after logout
+}
+
+    </script>
+   <script>
+    function checkLoginStatus() {
+        const userLoggedIn = sessionStorage.getItem('userLoggedIn') === 'true';
+        const ownerLoggedIn = sessionStorage.getItem('ownerLoggedIn') === 'true';
+
+        if (userLoggedIn || ownerLoggedIn) {
+            document.getElementById('signupDropdown').classList.add('hidden');
+            document.getElementById('loginDropdown').classList.add('hidden');
+        } else {
+            document.getElementById('signupDropdown').classList.remove('hidden');
+            document.getElementById('loginDropdown').classList.remove('hidden');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', checkLoginStatus);
+</script>
+
+<script>
+    document.getElementById('propertyType').addEventListener('change', function() {
+        const propertyType = this.value;
+
+        // Get all filter groups
+        const pgHostelFilters = document.querySelectorAll('.pg-hostel-filters');
+        const flatmatesFilters = document.querySelectorAll('.flatmates-filters');
+        const hostelbookingFilters = document.querySelectorAll('.hotelbooking-filters');
+        // Hide all filters initially
+        hideAllFilters();
+
+        // Show relevant filters based on selected property type
+        if (propertyType === 'PG/Hostel') {
+            showFilters(pgHostelFilters);
+        } else if (propertyType === 'Flatmates') {
+            showFilters(flatmatesFilters);
+        } else if (propertyType === 'hotel booking') {
+            showFilters(hotelbookingFilters);
+        } 
+    });
+
+    // Helper function to hide all filters
+    function hideAllFilters() {
+        document.querySelectorAll('.filter-group').forEach(filterGroup => {
+            filterGroup.classList.add('hidden');
+        });
+    }
+
+    // Helper function to show selected filters
+    function showFilters(filters) {
+        filters.forEach(filter => {
+            filter.classList.remove('hidden');
+        });
+    }
+
+    // Call this function when page loads to ensure no filters are shown initially
+    document.addEventListener('DOMContentLoaded', hideAllFilters);
+
+    document.getElementById('propertyType').addEventListener('change', function() {
+        const propertyType = this.value;
+        document.getElementById('availability').classList.remove('hidden');
+    });   
+    function loadLocalities() {
+        const city = document.getElementById("city").value;
+        const localitiesInput = document.getElementById("localities");
+        if (city) {
+            fetch(`https://example.com/api/localities?city=${encodeURIComponent(city)}`)
+                .then(response => response.json())
+                .then(data => {
+                  // Handle localities update here
+                })
+                .catch(error => console.error('Error fetching localities:', error));
+        }
+    }
+</script>
+<script>
+    document.getElementById('propertyType').addEventListener('change', function() {
+        const propertyType = this.value;
+        document.getElementById('availability').classList.remove('hidden');
+    });    
+    function loadLocalities() {
+        const city = document.getElementById("city").value;
+        const localitiesInput = document.getElementById("localities");   
+        if (city) {
+            fetch(`https://example.com/api/localities?city=${encodeURIComponent(city)}`)
+                .then(response => response.json())
+                .then(data => {
+              // Handle localities update here
+                })
+                .catch(error => console.error('Error fetching localities:', error));
+        }
+    }
+</script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

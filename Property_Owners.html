@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Havenist</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        html, body {
+    height: 100%;
+    }
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    margin: 0;
+    text-decoration: none;
+    color: #007bff;
+}
+/* Property Owner Styles */
+.property-owner {
+    margin-top: 20px;
+}
+
+.property-owner button, .property-owner-btn {
+    padding: 10px 20px;
+    background-color: #5f99e6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #343a40;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+/* Pay Rent Box Styles */
+.pay-rent-box {
+    display: flex;
+    align-items: center;
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.pay-rent-box i {
+    margin-right: 8px;
+}
+
+/* Dropdown Menu Styles */
+.dropdown {
+    position: page; /* Position relative to contain the absolutely positioned dropdown menu */
+}
+
+.dropdown-menu {
+    position: absolute; /* Ensure the dropdown is positioned absolutely relative to its container */
+    top: 100%; /* Position the dropdown directly below the dropdown toggle */
+    left: 0; /* Align the dropdown menu to the left of its container */
+    right: auto; /* Remove right positioning to avoid shifting */
+    width: 200px; /* Set a specific width for the dropdown menu */
+    max-height: 300px; /* Add a max-height to prevent it from growing too large */
+    overflow-y: visible; /* Add scrolling if the content exceeds the max-height */
+    background-color: white; /* Ensure the dropdown has a proper background */
+    border: 1px solid #ddd; /* Add border to match the design */
+    border-radius: 2px; /* Round the corners */
+    padding: 0; /* Remove default padding if necessary */
+    margin: 0; /* Remove default margin if necessary */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+    z-index: 100; /* Ensure the dropdown appears above other elements */
+}
+
+.dropdown-menu a {
+    background-color: #ff5a60;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1; /* Highlight the item on hover */
+}
+
+.custom-dropdown-btn {
+    width: 150px; /* Adjust the width as needed */
+    padding: 9px 5px; /* Adjust padding as needed */
+    font-size: 16px; /* Adjust font-size as needed */
+}
+.dropdown-item:hover {
+    background-color: #e04a50;
+}
+
+/* Container Styles */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Content Styles */
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-panel {
+    width: 30%;
+    height: 500px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Optional background color for better readability */
+    border-radius: 10px;
+}
+
+.right-panel {
+    width: 65%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Optional background color for better readability */
+    border-radius: 10px;
+}
+
+.left-panel h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.left-panel ul {
+    list-style: none;
+    padding: 0;
+}
+
+.left-panel ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.left-panel ul li i {
+    margin-right: 10px;
+}
+
+.testimonial {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+.testimonial p {
+    margin-bottom: 5px;
+}
+
+.testimonial strong {
+    display: block;
+    margin-top: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group input[type="checkbox"] {
+    width: auto;
+}
+
+/* Property Type Buttons Styles */
+.property-type {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-left: 275px;
+}
+
+.property-type button {
+    width: 32%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.property-type button:hover, .property-type button.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Submit Button Styles */
+.submit-btn {
+    background-color: #ff5a60;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #e04a50;
+}
+
+/* WhatsApp Updates Styles */
+.whatsapp-updates {
+    display: flex;
+    align-items: center;
+}
+
+.whatsapp-updates input {
+    width: auto;
+    margin-right: 10px;
+}
+
+/* Property Type Tabs Styles */
+.property-type-tab {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 5px 5px 0 0;
+}
+
+.property-type-tab button {
+    border: none;
+    background: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.property-type-tab button.active {
+    border-bottom: 3px solid #007bff;
+    font-weight: bold;
+}
+
+.property-type-tab button .badge {
+    background-color: #ff5a60;
+    color: white;
+    padding: 3px 7px;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+/* Ad Type Buttons Styles */
+.ad-type-buttons {
+    display: none;
+}
+
+.ad-type-buttons.active {
+    display: block;
+}
+
+.property-ad-type {
+    padding: 20px;
+    border: 1px solid #e9ecef;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+}
+
+.property-ad-type button {
+    margin: 0 10px 10px 0;
+    padding: 10px 20px;
+    border: 1px solid #007bff;
+    background-color: #f8f9fa;
+    color: #007bff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.property-ad-type button.active {
+    padding-left: 10px;
+    background-color: #007bff;
+    color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .nav-item {
+        margin-left: 0;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+}
+.ad-type-buttons button {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .ad-type-buttons button.selected {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .property-ad-type {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .centered-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+        }
+
+        .login-form {
+            background: rgba(241, 200, 180, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 390px;
+        }
+
+        .login-form h2 {
+            margin-bottom: 20px;
+        }
+
+        .submit-btn {
+            background-color: #ff5a60;
+            color: white;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .submit-btn:hover {
+            background-color: #e04a50;
+        }
+ 
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+            }
+            
+            .modal-content {
+                background-color: #fefefe;
+                margin: 15% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 30%; /* Could be more or less, depending on screen size */
+            }
+
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+    
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="header">
+        <div class="Logo">
+            <a href="index.html">
+                <img src="Images/Havenist_transparent.png" alt="Havenist">
+            </a>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link pay-rent-box bold-link" href="pay_rent.html">
+                            <i class="fas fa-credit-card"></i> Pay Rent
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link property-owner-btn" href="Property_Owners.html">For Property Owners</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="signupDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sign up
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="signupDropdown">
+                            <a class="dropdown-item" href="User_Signup.html">User Signup</a>
+                            <a class="dropdown-item" href="Customer_signup.html">Customer Signup</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Log in
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="loginDropdown">
+                            <a class="dropdown-item" href="User_Login.html">User Login</a>
+                            <a class="dropdown-item" href="Customer_Login.html">Customer Login</a>
+                        </div>
+                    </li>
+                    <!--<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle custom-dropdown-btn" href="#" id="menuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="bi bi-menu-button-wide-fill"></i> Menu
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="menuDropdown">
+                            <a class="dropdown-item" href="About.html">About Us</a>
+                            <a class="dropdown-item" href="Property_Owners.html">For Property Owners</a>
+                            <a class="dropdown-item" href="Services.html">Services</a>
+                            <a class="dropdown-item" href="contact.html">Contact</a>
+                        </div>
+                    </li>-->
+
+                </ul>
+            </div>
+        </nav>
+        
+    </div>
+</header>
+<div class="container">
+    <div class="content">
+        <div class="left-panel">
+            <h2>Sidebar</h2>
+            <ul>
+                <li><i class="fas fa-home"></i> Home</li>
+                <li><i class="fas fa-info-circle"></i> About</li>
+                <li><i class="fas fa-envelope"></i> Contact</li>
+            </ul>
+            <div class="testimonial">
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget nulla nec sapien placerat volutpat."</p>
+                <strong>- John Doe</strong>
+            </div>
+        </div>
+        <div class="right-panel">
+            <h2>Main Content</h2>
+            <p>Welcome to our website! Here you can find various resources and information.</p>
+            <div class="container mt-5">
+                <div class="property-type">
+                    <button id="residential-btn" class="active" data-type="residential" onclick="checkLoginStatus('hotel-details-form')">Residential</button>
+                </div>
+                
+                <div class="property-ad-type">
+                    <div class="d-flex justify-content-center mb-4">
+                        <h5>Select Property Ad Type</h5>
+                    </div>
+                    
+                    <div class="ad-type-buttons residential active" id="property-ad-type">
+                        <button onclick="checkLoginStatus('hotel-details-form')">Hotel Booking</button>
+                        <button onclick="checkLoginStatus('pg-hostel-form')">PG/Hostel</button>
+                        <button onclick="checkLoginStatus('flatmate-details-form')">Flatmates</button>
+                    </div>
+                </div>
+                
+                <!-- Hidden Form for Hotel Booking -->
+                <form id="hotel-details-form" class="property-form" method="POST" enctype="multipart/form-data" action="submit_hotel_details.php" style="display: none;">
+                    <input type="hidden" name="form_type" value="hotel_details">
+                    <h3>Add Hotel Details</h3>
+                    <div class="form-group">
+                        <label for="hotelName">Hotel Name:</label>
+                        <input type="text" id="hotelName" name="hotel_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Localities">Localities:</label>
+                        <input type="text" id="Localities" name="Localities" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price per Night:</label>
+                        <input type="text" id="price" name="price_per_night" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="roomType">Room Type:</label>
+                        <select id="roomType" name="room_type" required>
+                            <option value="Single">Single</option>
+                            <option value="Double">Double</option>
+                            <option value="Suite">Suite</option>
+                            <option value="Deluxe">Deluxe</option>
+                            <option value="Family">Family</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="amenities">Amenities:</label>
+                        <textarea id="amenities" name="amenities"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="totalRooms">Total Rooms:</label>
+                        <input type="number" id="totalRooms" name="total_rooms" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="availableRooms">Available Rooms:</label>
+                        <input type="number" id="availableRooms" name="available_rooms" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Hotel Image:</label>
+                        <input type="file" id="image" name="images[]" multiple required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ownerName">Owner Name:</label>
+                        <input type="text" id="ownerName" name="owner_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ownerContact">Owner Contact:</label>
+                        <input type="text" id="ownerContact" name="owner_contact" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">city:</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">description:</label>
+                        <input type="text" id="description" name="description" required>
+                    </div>
+                    <button type="submit">Add Hotel</button>
+                </form>
+                
+                <!-- Hidden Form for Flatmates -->
+                <form id="flatmate-details-form" class="property-form" method="POST" enctype="multipart/form-data" action="submit_flatmate_details.php" style="display: none;">
+                    <input type="hidden" name="form_type" value="flatmate_details">
+                    <h3>Add Flatmate Details</h3>
+                    <div class="form-group">
+                        <label for="name">Flatmate Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select id="gender" name="gender" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="occupation">Occupation:</label>
+                        <input type="text" id="occupation" name="occupation">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City:</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sharingType">Sharing Type:</label>
+                        <select id="sharingType" name="sharing_type" required>
+                            <option value="Single">Single</option>
+                            <option value="Double">Double</option>
+                            <option value="Triple">Triple</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget (Maximum Rent):</label>
+                        <input type="text" id="budget" name="budget" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Localities">Localities:</label>
+                        <input type="text" id="Localities" name="Localities">
+                    </div>
+                    <div class="form-group">
+                        <label for="lifestyle">Lifestyle:</label>
+                        <textarea id="lifestyle" name="lifestyle"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="availableFrom">Available From:</label>
+                        <input type="date" id="availableFrom" name="available_from" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Flatmate Image:</label>
+                        <input type="file" id="image" name="images[]" multiple required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactInfo">Contact Info:</label>
+                        <input type="text" id="contactInfo" name="contact_info" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">description:</label>
+                        <input type="text" id="description" name="description" required>
+                    </div>
+                    <button type="submit">Add Flatmate</button>
+                </form>
+                
+                <!-- Hidden Form for PG/Hostel -->
+                <form id="pg-hostel-form" method="POST" enctype="multipart/form-data" action="submit_pg_hostel.php" style="display: none;">
+                    <h3>Add PG/Hostel Details</h3>
+                    <div class="form-group">
+                        <label for="propertyName">Property Name:</label>
+                        <input type="text" id="propertyName" name="property_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="propertyType">Property Type:</label>
+                        <select id="propertyType" name="property_type" required>
+                            <option value="Hostel">Hostel</option>
+                            <option value="Flatmates">Flatmates</option>
+                            <option value="Hotel Booking">Hotel</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City:</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Monthly Rent:</label>
+                        <input type="text" id="price" name="price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sharingType">Sharing Type:</label>
+                        <select id="sharingType" name="sharing_type" required>
+                            <option value="Single">Single</option>
+                            <option value="Double">Double</option>
+                            <option value="Triple">Triple</option>
+                            <option value="Multiple">Multiple</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="facilities">Facilities :</label>
+                        <textarea id="facilities" name="facilities"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">full address :</label>
+                        <textarea id="address" name="address"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="availability">Availability :</label>
+                        <input type="date" id="availability" name="availability" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Hotel Image:</label>
+                        <input type="file" id="image" name="images[]" multiple required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ownerName">Owner Name:</label>
+                        <input type="text" id="ownerName" name="owner_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ownerContact">Owner Contact:</label>
+                        <input type="text" id="ownerContact" name="owner_contact" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Localities">Localities:</label>
+                        <input type="text" id="Localities" name="Localities" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">description:</label>
+                        <input type="text" id="description" name="description" required>
+                    </div>
+                    <button type="submit">Add PG/Hostel</button>
+                </form>
+                
+                <!-- Login Form (Initially Hidden) -->
+                <div id="loginModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <h2>Owner Login</h2>
+                        <form id="loginForm" action="owner_login_process.php" method="POST" onsubmit="return loginUser(event);">
+                            <div class="form-group">
+                                <label for="ownerEmail">Email</label>
+                                <input type="email" class="form-control" id="ownerEmail" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ownerPassword">Password</label>
+                                <input type="password" class="form-control" id="ownerPassword" placeholder="Enter your password" required>
+                            </div>
+                            <button type="submit" class="submit-btn">Login</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- JavaScript -->
+                <script>
+                let selectedFormId = '';
+
+                // Check if the user is logged in
+                function checkLoginStatus(formId) {
+                    selectedFormId = formId; // Store the selected form ID to display after login
+                    const isLoggedIn = checkUserLoggedIn();
+
+                    if (isLoggedIn) {
+                        showForm(formId); // User is logged in, show the form
+                    } else {
+                        showModal(); // User is not logged in, show login modal
+                    }
+                }
+
+                // Simulate checking login status (this should be replaced with actual login status check via session or cookie)
+                function checkUserLoggedIn() {
+                    // Replace this with actual logic to check session or cookies for logged-in status
+                    return false; // Assume user is not logged in for now
+                }
+
+                // Show the login modal
+                function showModal() {
+                    document.getElementById('loginModal').style.display = 'block';
+                }
+
+                // Close the login modal
+                function closeModal() {
+                    document.getElementById('loginModal').style.display = 'none';
+                }
+
+                // Simulate user login
+                function loginUser(event) {
+                    event.preventDefault(); // Prevent form submission (simulation)
+
+                    // Simulate login success (this should be replaced by actual login validation)
+                    alert('Login successful!');
+
+                    // Hide the login modal
+                    closeModal();
+
+                    // Show the previously selected form
+                    showForm(selectedFormId);
+                }
+
+                // Show form after successful login
+                function showForm(formId) {
+                    // Hide all forms
+                    const forms = document.querySelectorAll('.property-form');
+                    forms.forEach(function(form) {
+                        form.style.display = 'none';
+                    });
+
+                    // Show the selected form
+                    const selectedForm = document.getElementById(formId);
+                    if (selectedForm) {
+                        selectedForm.style.display = 'block';
+                    }
+                }
+                </script>
+
+                <!-- CSS for Modal -->
+                <style>
+                    .modal {
+                        display: none; /* Hidden by default */
+                        position: fixed;
+                        z-index: 1;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+                    }
+                    
+                    .modal-content {
+                        background-color: #fefefe;
+                        margin: 15% auto;
+                        padding: 20px;
+                        border: 1px solid #888;
+                        width: 30%; /* Could be more or less, depending on screen size */
+                    }
+
+                    .close {
+                        color: #aaa;
+                        float: right;
+                        font-size: 28px;
+                        font-weight: bold;
+                    }
+
+                    .close:hover,
+                    .close:focus {
+                        color: black;
+                        text-decoration: none;
+                        cursor: pointer;
+                    }
+                </style>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

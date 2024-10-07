@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Rent with Credit Card</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-y: auto; /* Ensure vertical scrolling is allowed if needed */
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #f8f9fa;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .bold-link {
+            color: black;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            color: #000 !important;
+        }
+
+        /* Logo Styles */
+        .Logo {
+            display: flex;
+            align-items: center;
+            text-align: center; /* Center align the content */
+        }
+
+        .Logo img {
+            max-width: 200%; /* Make sure the image does not exceed its container's width */
+            height: max-content; /* Maintain the image's aspect ratio */
+            border: 0; /* Remove any default border */
+            display: block; /* Remove any inline spacing issues */
+            margin: 0px; /* Center align the image horizontally */
+            margin-left: 2px;
+            max-height: 55px;
+            margin-right: 15px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Dropdown Menu Styles */
+        .dropdown-menu {
+            position: absolute; /* Ensure the dropdown is positioned absolutely relative to its container */
+            top: 100%; /* Position the dropdown directly below the dropdown toggle */
+            left: 0; /* Align the dropdown menu to the left of its container */
+            right: auto; /* Remove right positioning to avoid shifting */
+            width: 200px; /* Set a specific width for the dropdown menu */
+            max-height: 300px; /* Add a max-height to prevent it from growing too large */
+            overflow-y: visible; /* Add scrolling if the content exceeds the max-height */
+            background-color: white; /* Ensure the dropdown has a proper background */
+            border: 1px solid #ddd; /* Add border to match the design */
+            border-radius: 2px; /* Round the corners */
+            padding: 0; /* Remove default padding if necessary */
+            margin: 0; /* Remove default margin if necessary */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+            z-index: 100; /* Ensure the dropdown appears above other elements */
+        }
+
+        .dropdown-menu a {
+            display: block; /* Ensure that the items within the dropdown take up the full width */
+            padding: 5px; /* Add padding to make items clickable and spaced out */
+            text-align: left; /* Align text to the left */
+            color: #333; /* Ensure text color is readable */
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1; /* Highlight the item on hover */
+        }
+
+        .custom-dropdown-btn {
+            width: 150px; /* Adjust the width as needed */
+            padding: 9px 5px; /* Adjust padding as needed */
+            font-size: 16px; /* Adjust font-size as needed */
+        }
+
+        /* Navbar Link Styles */
+        nav a {
+            margin: 0;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        /* Pay Rent Box Styles */
+        .pay-rent-box {
+            display: flex;
+            align-items: center;
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .pay-rent-box i {
+            margin-right: 8px;
+        }
+
+        /* Property Owner Button Styles */
+        .property-owner-btn {
+            padding: 10px 20px;
+            background-color: #5f99e6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+        }
+        .nav-link
+        {
+            color: black;
+        }
+        .form-control {
+            font-family: FontAwesome, sans-serif;
+        }
+        .form-control option {
+            padding-left: 30px; /* Adjust this value as needed to align icons properly */
+            position: relative;
+        }
+        .form-control option::before {
+            content: '\f015'; /* Example Unicode for Font Awesome icon, adjust as needed */
+            font-family: FontAwesome;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+
+        }
+        .form-control {
+            font-family: Arial, sans-serif; /* Fallback font */
+            font-size: 16px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj4KICA8cGF0aCBkPSJNMTAsMiwxMCwyIEwgOSw1IEwgMjAsMCAyLDEwIFoiIGZpbGw9IiMwMDAiLz4KPC9zdmc+'); /* Adjust as needed */
+            background-position: 5px center;
+            background-repeat: no-repeat;
+            padding-left: 30px; /* Adjust as needed for icon spacing */
+        }
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+        body {
+            background-image: url('Images/Body_background.jpeg'); /* Update the path */
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+        .col-md-4 {
+            background: rgba(241, 200, 180, 0.9); /* Light white background with slight opacity */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .btn-primary {
+            padding: 10px 128px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- Navigation Bar -->
+<div class="header">
+    <div class="Logo">
+        <a href="index.html">
+            <img src="Images/Havenist_transparent.png" alt="Havenist">
+        </a>
+        <a class="nav-link" href="#">Benefits</a>
+        <a class="nav-link" href="#">How It Works</a>
+        <a class="nav-link" href="#">FAQs</a>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link " href="index.html">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="signupDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sign up
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="signupDropdown">
+                        <a class="dropdown-item" href="User_Signup.html">User Signup</a>
+                        <a class="dropdown-item" href="Customer_signup.html">Customer Signup</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Log in
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="loginDropdown">
+                        <a class="dropdown-item" href="User_Login.html">User Login</a>
+                        <a class="dropdown-item" href="Customer_Login.html">Customer Login</a>
+                    </div>
+                </li>
+               <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle custom-dropdown-btn" href="#" id="menuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bi bi-menu-button-wide-fill"></i> Menu
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="menuDropdown">
+                        <a class="dropdown-item" href="About.html">About Us</a>
+                        <a class="dropdown-item" href="Property_Owners.html">For Property Owners</a>
+                        <a class="dropdown-item" href="Services.html">Services</a>
+                        <a class="dropdown-item" href="contact.html">Contact</a>
+                    </div>
+                </li>-->
+
+            </ul>
+        </div>
+    </nav>
+
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 content-section">
+            <h3>Pay Rent and Fees with Credit Card</h3>
+            <p>Lowest Charges. Instant Transfers.</p>
+            <div class="content-item d-flex align-items-center">
+                <img src="https://via.placeholder.com/50" alt="NB InstaCash">
+                <div>
+                    <h5>NB InstaCash</h5>
+                    <p>Get Instant Cash Upto ₹10 Lakhs</p>
+                    <a href="#" class="btn btn-light btn-sm">Withdraw Now</a>
+                </div>
+            </div>
+            <div class="content-item d-flex align-items-center">
+                <img src="https://via.placeholder.com/50" alt="Cashback Dhamaka">
+                <div>
+                    <h5>Cashback Dhamaka</h5>
+                    <p>Every 100th user gets ₹100 or ₹1000 cashback</p>
+                    <a href="#" class="btn btn-light btn-sm">View Winners</a>
+                </div>
+            </div>
+            <div class="content-item d-flex align-items-center">
+                <img src="https://via.placeholder.com/50" alt="Renter's Club">
+                <div>
+                    <h5>Renter's Club</h5>
+                    <p>Get 50% Off on processing fees by inviting your friends</p>
+                </div>
+            </div>
+            <div class="content-item d-flex align-items-center">
+                <img src="https://via.placeholder.com/50" alt="Society Maintenance">
+                <div>
+                    <h5>Now pay Society Maintenance too</h5>
+                    <p>All your property payments at one place - rent, maintenance, deposit, token</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+
+            <form>
+                <div class="form-group">
+                    <label for="paymentType">Payment Type</label>
+                    <select class="form-control" id="paymentType">
+                        <option value="houseRent"><i class="bi bi-house-fill"></i> House Rent</option>
+                        <option value="schoolFees"><i class="fas fa-school"></i> School & College Fees</option>
+                        <option value="tuitionFees"><i class="fas fa-chalkboard-teacher"></i> Tuition Fees</option>
+                        <option value="societyMaintenance"><i class="fas fa-building"></i> Society Maintenance</option>
+                        <option value="officeRent"><i class="fas fa-briefcase"></i> Office / Shop Rent</option>
+                        <option value="propertyToken"><i class="fas fa-key"></i> Property Token</option>
+                        <option value="propertyDeposit"><i class="fas fa-hand-holding-usd"></i> Property Deposit</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Mobile Number</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="whatsappUpdates">
+                    <label class="form-check-label" for="whatsappUpdates">Get payment updates on WhatsApp</label>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email address">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="terms">
+                    <label class="form-check-label" for="terms">I agree to the Havenist Terms and Conditions</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Get Started</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

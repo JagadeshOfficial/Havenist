@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Havenist</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="Logo">
+            <a href="index.html"><img src="Images/Havenist_transparent.png" alt="Company Logo"></a>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- Navbar content -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link pay-rent-box bold-link" href="pay_rent.html">
+                            <i class="fas fa-credit-card"></i> Pay Rent
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link property-owner-btn" href="Property_Owners.html">For Property Owners</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="signupDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sign up
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="signupDropdown">
+                            <a class="dropdown-item" href="User_Signup.html">User Signup</a>
+                            <a class="dropdown-item" href="Customer_signup.html">Customer Signup</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Log in
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="loginDropdown">
+                            <a class="dropdown-item" href="User_Login.html">User Login</a>
+                            <a class="dropdown-item" href="Customer_Login.html">Customer Login</a>
+                        </div>
+                    </li>
+                   <!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle custom-dropdown-btn" href="#" id="menuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="bi bi-menu-button-wide-fill"></i> Menu
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="menuDropdown">
+                            <a class="dropdown-item" href="About.html">About Us</a>
+                            <a class="dropdown-item" href="Property_Owners.html">For Property Owners</a>
+                            <a class="dropdown-item" href="Services.html">Services</a>
+                            <a class="dropdown-item" href="contact.html">Contact</a>
+                        </div>
+                    </li>-->
+                </ul>
+            </div>
+         </nav>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content">
+            <!-- Left Panel -->
+            <div class="left-panel">
+                <h2>Contact Info</h2>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +123 456 7890</li>
+                    <li><i class="fas fa-envelope"></i> info@havenist.com</li>
+                </ul>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="right-panel">
+                <h2> User Sign Up</h2>
+                <form id="signupForm" method="post" action="user_signup_process.php"> <!-- No hidden submit button needed -->
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="last-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="agreement">
+                            <input type="checkbox" id="agreement" name="agreement" required> I agree to the <a href="#">terms and conditions</a>
+                        </label>
+                    </div>
+                    <div class="whatsapp-updates">
+                        <input type="checkbox" id="whatsappUpdates" name="whatsappUpdates">
+                        <i class="fab fa-whatsapp whatsapp-icon"></i>
+                        <label for="whatsappUpdates">Receive updates via WhatsApp</label>
+                    </div>
+                    <div class="form-group otp-section">
+                        <label for="otp">OTP</label>
+                        <input type="text" id="otp" name="otp" placeholder="Enter OTP">
+                        <button type="button" id="verifyOtp">Verify OTP</button>
+                    </div>
+                    <div class="submit-container">
+                        <button type="button" id="sendOtp" class="submit-btn">Send OTP</button>
+                        <button type="submit" id="submitForm" class="submit-btn" style="display: none;" >Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Havenist. All rights reserved.</p>
+    </footer>
+
+    <!-- jQuery, Popper, Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for handling OTP and form -->
+     <script>
+    $(document).ready(function() {
+        $('#sendOtp').click(function() {
+            $.ajax({
+                url: 'user_signup_process.php',
+                type: 'POST',
+                data: {
+                    action: 'send_otp',
+                    'email': $('#email').val()
+                },
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    if (data.status === 'success') {
+                        alert(data.message);
+                    } else {
+                        alert(data.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    alert('An error occurred while sending OTP.');
+                }
+            });
+        });
+    
+        $('#verifyOtp').click(function() {
+            $.ajax({
+                url: 'user_signup_process.php',
+                type: 'POST',
+                data: {
+                    action: 'verify_otp',
+                    'otp': $('#otp').val()
+                },
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    if (data.status === 'success') {
+                        alert(data.message);
+                        $('#sendOtp').hide(); // Hide Send OTP button
+                        $('#submitForm').show(); // Show Submit button
+                    } else {
+                        alert(data.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    alert('An error occurred while verifying OTP.');
+                }
+            });
+        });
+    
+        $('#signupForm').submit(function(e) {
+            e.preventDefault(); // Prevent default form submission
+    
+            $.ajax({
+                url: 'user_signup_process.php',
+                type: 'POST',
+                data: $(this).serialize() + '&action=submit_form',
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    if (data.status === 'success') {
+                        // Redirect to login page
+                        window.location.href = 'user_login.html';
+                    } else {
+                        alert(data.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    alert('An error occurred while submitting the form.');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

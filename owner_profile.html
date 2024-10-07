@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>owner Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            height: auto; /* Ensures it takes up the full viewport height */
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+           
+            padding: 20px;
+            border-right: 1px solid #ddd;
+            box-sizing: border-box;
+            position: absolute;
+            top: 5px;
+            bottom: 0;
+            left: 2px;
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidebar ul li a i {
+            margin-right: 10px; /* Spacing between the icon and text */
+        }
+
+        /* Profile Section */
+        .profile-container {
+            flex-grow: 1;
+            padding: 10px;
+            margin-left: 180px; /* Margin to avoid overlap with the fixed sidebar */
+            box-sizing: border-box;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .profile-header h1 {
+            font-size: 24px;
+        }
+
+        .profile-form {
+            margin-top: 30px;
+        }
+
+        .profile-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .profile-form input[type="text"],
+        .profile-form input[type="email"],
+        .profile-form input[type="tel"] {
+            width: 50%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .profile-form .alert {
+            color: #d9534f;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .profile-form .whatsapp-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-form .whatsapp-section input {
+            margin-right: 10px;
+        }
+
+        .profile-form button {
+            padding: 10px 20px;
+            background-color: cadetblue;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .profile-form button:hover {
+            background-color: #ff4b4b;
+        }
+        /* Circular Photo Upload */
+        .photo-upload-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .photo-upload-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: none; /* Initially hidden until a photo is uploaded */
+        }
+
+        .photo-upload-circle:hover {
+            background-color: #e0e0e0;
+        }
+
+        .photo-upload-icon {
+            font-size: 24px;
+            color: #aaa;
+        }
+
+        .photo-input {
+            display: none; /* Hide the actual file input */
+        }
+        
+.sidebar ul li a:hover {
+    background-color: hsl(253, 7%, 74%);
+    color: #fff;
+}
+
+    </style>
+</head>
+
+<body style="background-image: none;">
+    <!--header-->
+<div class="header">
+    <div class="Logo">
+        <a href="index.html"><img src="Images/Havenist_transparent.png" alt="Havenist"></a>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link pay-rent-box bold-link" href="pay_rent.html">
+                        <i class="fas fa-credit-card"></i> Pay Rent
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link property-owner-btn" href="Property_Owners.html">For Property Owners</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="signupDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sign up
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="signupDropdown">
+                        <a class="dropdown-item" href="User_Signup.html">User Signup</a>
+                        <a class="dropdown-item" href="Customer_signup.html">Customer Signup</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Log in
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="loginDropdown">
+                        <a class="dropdown-item" href="User_Login.html">User Login</a>
+                        <a class="dropdown-item" href="Customer_Login.html">Customer Login</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle custom-dropdown-btn" href="#" id="menuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bi bi-menu-button-wide-fill"></i> Menu
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="menuDropdown">
+                        <a class="dropdown-item" href="About.html">About Us</a>
+                        <a class="dropdown-item" href="Property_Owners.html">For Property Owners</a>
+                        <a class="dropdown-item" href="Services.html">Services</a>
+                        <a class="dropdown-item" href="contact.html">Contact</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar" style="padding-top:100px">
+            <h2>Manage your Account</h2>
+            <ul>
+                <li><a href="#" onclick="showSection('profile-form')">Basic Profile</a></li>
+                <li><a href="#" onclick="showSection('shortlist-section')">Your properties</a></li>
+                
+                
+                <li><a href="#">Interested in your Properties</a></li>
+            </ul>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="profile-container" id="profile-form" style="display: none;">
+            <div class="profile-header">
+                <h3>Edit Your Profile</h3>
+                <!-- Add more options like icons or buttons here if needed -->
+            </div>
+            <form class="profile-form">
+                <!-- Photo Upload Field -->
+                <div class="photo-upload-circle" onclick="document.getElementById('photo').click();">
+                    <img id="profileImage" src="#" alt="Profile Photo" style="display: none;">
+                    <i class="fas fa-camera photo-upload-icon"></i>
+                </div>
+                <input type="file" id="photo" name="photo" class="photo-input" accept="image/*" onchange="previewPhoto(event)">
+    
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email">
+                <div class="alert">Click here to generate email verification mail.</div>
+                <label for="phone">Mobile Phone</label>
+                <input type="tel" id="phone" name="phone">
+                <div class="alert">Click here to generate password reset email.</div>
+                <div class="whatsapp-section">
+                    <input type="checkbox" id="whatsapp" name="whatsapp">
+                    <label for="whatsapp">Get Updates on WhatsApp</label>
+                </div>
+                <button type="button">Save Profile</button>
+            </form>
+        </div>
+    
+        <!-- Add more sections here if needed, e.g., for shortlists -->
+        <div class="profile-container" id="shortlist-section" style="display: none;">
+            <h3>Your properties</h3>
+            <!-- Your Shortlists content -->
+        </div>
+    </div>
+    <script>
+        // Preview the uploaded photo in the circle
+        function previewPhoto(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const profileImage = document.getElementById('profileImage');
+                profileImage.src = reader.result;
+                profileImage.style.display = 'block'; // Show the image
+                document.querySelector('.photo-upload-icon').style.display = 'none'; // Hide the icon
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+    <script>
+        function showSection(sectionId) {
+            // Hide all profile-related sections
+            const sections = document.querySelectorAll('.profile-container');
+            sections.forEach(section => {
+                section.style.display = 'none'; // Hide all sections
+            });
+        
+            // Show the selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block'; // Show the chosen section
+            }
+        }
+        
+        // Optional: Set the default section to display when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('profile-form'); // Change this to any default section you want to show
+        });
+        </script>
+        
+</body>
+</html>
